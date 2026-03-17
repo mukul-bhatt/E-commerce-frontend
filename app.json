@@ -30,6 +30,16 @@
           "backgroundColor": "#ffffff",
           "image": "./assets/splash-icon.png"
         }
+      ],
+      [
+        "expo-font",
+        {
+           "fonts": [
+            "./assets/fonts/CormorantGaramond_500Medium.ttf",
+            "./assets/fonts/Girassol_400Regular.ttf",
+            "./assets/fonts/Gidugu_400Regular.ttf"
+            ]
+        }
       ]
     ]
   }
