@@ -33,7 +33,7 @@ const HorizontalScroll = () => {
             renderItem={({item}) => (
                 <View className="rounded-lg bg-primary">
                     <Image source={item.image} className="w-36 h-36 rounded-t-lg"/>
-                    <Text className="text-md text-white font-bold font-sans text-center"> Fashion</Text>
+                    <Text className="text-md text-white font-bold text-center"> Fashion</Text>
                 </View>
             )}
             ItemSeparatorComponent={() => <View className="w-4" />}

@@ -1,6 +1,7 @@
 import { View, Image, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { textShadow } from "../../../theme/shadow";
 import { MaterialIcons } from "@expo/vector-icons";
+import { fonts } from "../../../theme/typography";
 
 const SpecialAdBanner = () => {
     return (
@@ -14,8 +15,8 @@ const SpecialAdBanner = () => {
                 >
                     <View className="flex-1 justify-end items-center px-4 pb-4">
                         <Text 
-                            className="text-white text-4xl text-center font-girassol leading-tight uppercase"
-                            style={textShadow.soft}
+                            className="text-white text-4xl text-center leading-tight uppercase"
+                            style={[textShadow.soft, { fontFamily: fonts.girassol }]}
                         >
                             Fashion For Men
                         </Text>
@@ -32,7 +33,7 @@ const SpecialAdBanner = () => {
                         >
                             {/* Inner translucent effect */}
                             <View className="flex-row items-center justify-center gap-2">
-                                <Text className="font-cormorantGaramond text-lg">SALE 60</Text>
+                                <Text className="text-lg" style={{ fontFamily: fonts.cormorantGaramond }}>SALE 60</Text>
                                 <MaterialIcons name="content-copy" size={16} color="black" />
                             </View>
                             <View className="absolute inset-0 bg-white/10" />
@@ -51,7 +52,7 @@ const SpecialAdBanner = () => {
                         resizeMode="cover" 
                     />
                     <View className="py-2.5 items-center">
-                        <Text className="text-white text-[13px] font-cormorantGaramond">
+                        <Text className="text-white text-[13px]" style={{ fontFamily: fonts.cormorantGaramond }}>
                             Everything Under ₹499
                         </Text>
                     </View>
@@ -65,7 +66,7 @@ const SpecialAdBanner = () => {
                         resizeMode="cover" 
                     />
                     <View className="py-2.5 items-center">
-                        <Text className="text-white text-[13px] font-cormorantGaramond">
+                        <Text className="text-white text-[13px]" style={{ fontFamily: fonts.cormorantGaramond }}>
                             Everything Under ₹499
                         </Text>
                     </View>

@@ -4,7 +4,7 @@ import { CatalogScreen } from '../../features/catalog/screens/CatalogScreen';
 import { CartScreen } from '../../features/cart/screens/CartScreen';
 import { ProfileScreen } from '../../features/profile/screens/ProfileScreen';
 import { AccountScreen } from '../../features/Accounts/screens/AccountScreen';
-import { Ionicons, FontAwesome5, AntDesign, Feather, MaterialIcons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
+import { FontAwesome5, AntDesign, Feather } from '@expo/vector-icons';
 import { colors } from '../../theme/colors';
 
 const MainTabs = createBottomTabNavigator({
@@ -13,6 +13,7 @@ const MainTabs = createBottomTabNavigator({
     animation: 'fade',
     tabBarActiveTintColor: colors.primary,
     tabBarInactiveTintColor: colors.icon.secondary,
+    
     // tabBarStyle: {
     //   backgroundColor: '#020617',
     //   borderTopColor: '#1e293b',

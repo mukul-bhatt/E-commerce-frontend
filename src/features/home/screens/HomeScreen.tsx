@@ -12,10 +12,11 @@ import SpecialAdBanner from '../components/SpecialAdBanner';
 import Explore from "../components/Explore"
 import ShopByBrand from '../components/ShopByBrand';
 import TopHomeDecor from '../components/TopHomeDecor';
+import ImageBannerCard from '../components/ImageBannerCard';
 
 export function HomeScreen({location = "Delhi"}: {location: string}) {
   return (
-   <SafeAreaView>
+   <SafeAreaView edges={['top']}>
     <ScrollView showsVerticalScrollIndicator={false}>
 
     <View className='flex gap-4'>
@@ -36,7 +37,7 @@ export function HomeScreen({location = "Delhi"}: {location: string}) {
     {/* A View to hold all the components and give them the same horizontal padding */}
     <View className='mx-4 flex gap-4'>
       {/* Carousal Cards */}
-      <MainCarousals />   
+      <MainCarousals />    
 
       {/* Image grid */}
       <ImageGrid />
@@ -63,12 +64,20 @@ export function HomeScreen({location = "Delhi"}: {location: string}) {
       <ShopByBrand />
 
       <View className='mx-4'>
+
         {/* Top Home Decor Section */}
-      <TopHomeDecor />
+        <TopHomeDecor />
 
       </View>
+      {/* Image Banner Card */}
+      <ImageBannerCard />
+        
+      
+     
       
    </View>
+
+
     </ScrollView>
     
 

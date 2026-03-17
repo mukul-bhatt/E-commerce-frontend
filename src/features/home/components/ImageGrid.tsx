@@ -1,7 +1,7 @@
 import { View, Image, ImageBackground, Text, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { textShadow } from "../../../theme/shadow";
-import { fontFamily } from "../../../theme/typography";
+import { fonts } from "../../../theme/typography";
 
 interface CategoryCardProps {
   title: string;
@@ -21,17 +21,17 @@ const CategoryCard = ({ title, discount, image }: CategoryCardProps) => (
       
       <View className="items-center">
         <Text 
-          className="text-white font-girassol text-xl" 
-          style={textShadow.soft}
+          className="text-white text-xl" 
+          style={[textShadow.soft, { fontFamily: fonts.girassol }]}
         >
           {title}
         </Text>
-        <Text className="text-white font-gidugu text-md">
+        <Text className="text-white" style={{ fontFamily: fonts.gidugu }}>
           {discount}
         </Text>
         
         <View className="bg-white/90 px-3 py-1 rounded-full flex-row items-center">
-          <Text className="text-xs font-cormorantGaramond mr-1">Shop Now</Text>
+          <Text className="text-xs mr-1" style={{ fontFamily: fonts.cormorantGaramond }}>Shop Now</Text>
           <MaterialCommunityIcons name="arrow-right" size={8} color="black" />
         </View>
       </View>
