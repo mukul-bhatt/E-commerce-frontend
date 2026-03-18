@@ -1,4 +1,4 @@
-import { Navigation } from './app/navigation';
+import { Navigation } from './navigation';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export function App() {

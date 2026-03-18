@@ -1,13 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from '../../features/home/screens/HomeScreen';
-import { CatalogScreen } from '../../features/catalog/screens/CatalogScreen';
-import { CartScreen } from '../../features/cart/screens/CartScreen';
-import { ProfileScreen } from '../../features/profile/screens/ProfileScreen';
-import { AccountScreen } from '../../features/Accounts/screens/AccountScreen';
+import { HomeScreen } from '../features/home/screens/HomeScreen';
+import FashionScreen from '../features/home/screens/FashionScreen';
+import { CartScreen } from '../features/cart/screens/CartScreen';
+import { ProfileScreen } from '../features/profile/screens/ProfileScreen';
+import { AccountScreen } from '../features/Accounts/screens/AccountScreen';
 import { FontAwesome5, AntDesign, Feather } from '@expo/vector-icons';
-import { colors } from '../../theme/colors';
+import { colors } from '../theme/colors';
 
 const MainTabs = createBottomTabNavigator({
+  initialRouteName: 'Home',
   screenOptions: {
     headerShown: false,
     animation: 'fade',
@@ -30,7 +31,7 @@ const MainTabs = createBottomTabNavigator({
       },
     },
     Catalog: {
-      screen: CatalogScreen,
+      screen: FashionScreen,
       options: {
         title: 'Categories',
         tabBarIcon: ({ color }) => (
