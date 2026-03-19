@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Dimensions, Text, View, Image } from "react-native";
+import { Dimensions, View, Image, Pressable } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, {
   ICarouselInstance,
   Pagination,
 } from "react-native-reanimated-carousel";
 import { colors } from "../../../theme/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   require("../../../assets/Carousals/Rectangle1.png"),
@@ -19,6 +20,7 @@ const data = [
 const width = Dimensions.get("window").width;
  
 function MainCarousals() {
+  const navigation = useNavigation();
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
   const [carouselWidth, setCarouselWidth] = React.useState(0);
@@ -35,6 +37,7 @@ function MainCarousals() {
   };
  
   return (
+    <Pressable onPress={() => navigation.navigate('Fashion')}>
     <View 
       onLayout={(event) => {
         setCarouselWidth(event.nativeEvent.layout.width);
@@ -72,6 +75,7 @@ function MainCarousals() {
         />
       </View>
     </View>
+    </Pressable>
   );
 }
  

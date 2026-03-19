@@ -19,7 +19,8 @@ import { useState } from 'react';
 
 export function HomeScreen({location = "Delhi"}: {location: string}) {
   // Modal Visibility state
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+
   return (
    <SafeAreaView edges={['top']}>
     <ScrollView showsVerticalScrollIndicator={false}>

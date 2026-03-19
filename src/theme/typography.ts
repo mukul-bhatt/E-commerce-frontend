@@ -29,6 +29,21 @@ export const fonts = {
     android: 'PirataOne_400Regular',
     default: 'PirataOne_400Regular',
   })!,
+  rubik: Platform.select({
+    ios: 'Rubik-Regular',
+    android: 'Rubik_400Regular',
+    default: 'Rubik_400Regular',
+  })!,
+  rubikMedium: Platform.select({
+    ios: 'Rubik-Medium',
+    android: 'Rubik_500Medium',
+    default: 'Rubik_500Medium',
+  })!,
+  rubikBold: Platform.select({
+    ios: 'Rubik-Bold',
+    android: 'Rubik_700Bold',
+    default: 'Rubik_700Bold',
+  })!,
 };
 
 
@@ -37,4 +52,7 @@ export const fontFamily = {
   girassol: 'Girassol_400Regular',
   cormorantGaramond: 'CormorantGaramond_500Medium',
   gidugu: 'Gidugu_400Regular',
+  rubik: 'Rubik_400Regular',
+  rubikMedium: 'Rubik_500Medium',
+  rubikBold: 'Rubik_700Bold',
 };

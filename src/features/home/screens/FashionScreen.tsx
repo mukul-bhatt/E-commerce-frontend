@@ -13,7 +13,7 @@ import BrandsInFocus from "../components/BrandsInFocus"
 
 const FashionScreen = () => {
     return (
-        <SafeAreaView edges={['top']} className=" bg-white">
+        <View className=" bg-white">
             <ScrollView showsVerticalScrollIndicator={false}>
 
                 <StatusBar style="dark" />
@@ -51,7 +51,7 @@ const FashionScreen = () => {
 
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 
