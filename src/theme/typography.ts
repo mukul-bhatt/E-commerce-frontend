@@ -24,7 +24,13 @@ export const fonts = {
     android: 'Gidugu_400Regular',
     default: 'Gidugu_400Regular',
   })!,
+  pirataOne: Platform.select({
+    ios: 'PirataOne-Regular',
+    android: 'PirataOne_400Regular',
+    default: 'PirataOne_400Regular',
+  })!,
 };
+
 
 // Keep fontFamily export compatible with existing JS imports
 export const fontFamily = {

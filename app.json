@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ecomm"
+      "package": "com.ecomm",
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -37,7 +38,8 @@
            "fonts": [
             "./assets/fonts/CormorantGaramond_500Medium.ttf",
             "./assets/fonts/Girassol_400Regular.ttf",
-            "./assets/fonts/Gidugu_400Regular.ttf"
+            "./assets/fonts/Gidugu_400Regular.ttf",
+            "./assets/fonts/PirataOne_400Regular.ttf"
             ]
         }
       ]
