@@ -15,6 +15,10 @@ const colors = {
     background: "#FFF8E4",
   },
 
+  product: {
+    headerBackground: "#FFE7C5",
+  },
+
   timer: {
     textPink: "#CE307A",
     // Use hex — rgba() is not supported in Tailwind config.

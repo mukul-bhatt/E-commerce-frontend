@@ -49,10 +49,11 @@ export const fonts = {
 
 // Keep fontFamily export compatible with existing JS imports
 export const fontFamily = {
-  girassol: 'Girassol_400Regular',
-  cormorantGaramond: 'CormorantGaramond_500Medium',
-  gidugu: 'Gidugu_400Regular',
-  rubik: 'Rubik_400Regular',
-  rubikMedium: 'Rubik_500Medium',
-  rubikBold: 'Rubik_700Bold',
+  girassol: fonts.girassol,
+  cormorantGaramond: fonts.cormorantGaramond,
+  gidugu: fonts.gidugu,
+  pirataOne: fonts.pirataOne,
+  rubik: fonts.rubik,
+  rubikMedium: fonts.rubikMedium,
+  rubikBold: fonts.rubikBold,
 };
