@@ -15,11 +15,19 @@ const colors = {
     background: "#FFF8E4",
   },
 
+  product: {
+    headerBackground: "#FFE7C5",
+  },
+
   timer: {
     textPink: "#CE307A",
     // Use hex — rgba() is not supported in Tailwind config.
     // Apply opacity via className: bg-timer-textPinkBg/30
     textPinkBg: "#CE307A",
+  },
+
+  discountOnBrands: {
+    green: "#219601",
   }
 };
 

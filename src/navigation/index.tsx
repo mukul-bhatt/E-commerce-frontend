@@ -2,19 +2,8 @@ import {
   createStaticNavigation,
   StaticParamList,
 } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MainTabs from './BottomTabNavigator';
+import { RootStack } from './RootStackNavigator';
 
-const RootStack = createNativeStackNavigator({
-  screens: {
-    MainTabs: {
-      screen: MainTabs,
-      options: {
-        headerShown: false,
-      },
-    },
-  },
-});
 
 export const Navigation = createStaticNavigation(RootStack);
 

@@ -24,11 +24,36 @@ export const fonts = {
     android: 'Gidugu_400Regular',
     default: 'Gidugu_400Regular',
   })!,
+  pirataOne: Platform.select({
+    ios: 'PirataOne-Regular',
+    android: 'PirataOne_400Regular',
+    default: 'PirataOne_400Regular',
+  })!,
+  rubik: Platform.select({
+    ios: 'Rubik-Regular',
+    android: 'Rubik_400Regular',
+    default: 'Rubik_400Regular',
+  })!,
+  rubikMedium: Platform.select({
+    ios: 'Rubik-Medium',
+    android: 'Rubik_500Medium',
+    default: 'Rubik_500Medium',
+  })!,
+  rubikBold: Platform.select({
+    ios: 'Rubik-Bold',
+    android: 'Rubik_700Bold',
+    default: 'Rubik_700Bold',
+  })!,
 };
+
 
 // Keep fontFamily export compatible with existing JS imports
 export const fontFamily = {
-  girassol: 'Girassol_400Regular',
-  cormorantGaramond: 'CormorantGaramond_500Medium',
-  gidugu: 'Gidugu_400Regular',
+  girassol: fonts.girassol,
+  cormorantGaramond: fonts.cormorantGaramond,
+  gidugu: fonts.gidugu,
+  pirataOne: fonts.pirataOne,
+  rubik: fonts.rubik,
+  rubikMedium: fonts.rubikMedium,
+  rubikBold: fonts.rubikBold,
 };

@@ -2,8 +2,8 @@ import SearchBar from '../components/SearchBar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from "expo-status-bar";
 import MainCarousals from '../components/MainCarousals';
-import { View, Text } from 'react-native';
-import {MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import ImageGrid from '../components/ImageGrid';
 import ShopByCategory from '../components/ShopByCategory';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -13,74 +13,77 @@ import Explore from "../components/Explore"
 import ShopByBrand from '../components/ShopByBrand';
 import TopHomeDecor from '../components/TopHomeDecor';
 import ImageBannerCard from '../components/ImageBannerCard';
+import {useNavigation} from '@react-navigation/native';
 
-export function HomeScreen({location = "Delhi"}: {location: string}) {
+export function HomeScreen({ location = "Delhi" }: { location: string }) {
+
+  const navigation = useNavigation();
+
   return (
-   <SafeAreaView edges={['top']}>
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaView edges={['top']}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-    <View className='flex gap-4'>
+        <View className='flex gap-4'>
 
-    {/* Status Bar */}
-    <StatusBar style='dark'/>
+          {/* Status Bar */}
+          <StatusBar style='dark' />
 
-    {/* Search Bar */}
-    <SearchBar />
+          {/* Search Bar */}
+          <SearchBar />
 
-    {/* Delivery Location */}
-    <View className='px-4 bg-defaultGray py-2 flex-row items-center'>
-      <Ionicons name="location-outline" size={16} color="black" />
-      <Text>  Delivering to {location} </Text>
-      <MaterialCommunityIcons name="greater-than" size={12} color="black" />
-    </View>
+          {/* Delivery Location */}
+          <TouchableOpacity onPress={() => navigation.navigate('AddressModal')}>
+            <View className='px-4 bg-defaultGray py-2 flex-row items-center'>
 
-    {/* A View to hold all the components and give them the same horizontal padding */}
-    <View className='mx-4 flex gap-4'>
-      {/* Carousal Cards */}
-      <MainCarousals />    
+              <Ionicons name="location-outline" size={16} color="black" />
+              <Text>  Delivering to {location} </Text>
+              <MaterialCommunityIcons name="greater-than" size={12} color="black" />
 
-      {/* Image grid */}
-      <ImageGrid />
+            </View>
+          </TouchableOpacity>
 
-      {/* Shop by category section */}
-      <ShopByCategory />
+          {/* A View to hold all the components and give them the same horizontal padding */}
+          <View className='mx-4 flex gap-4'>
+            {/* Carousal Cards */}
+            <MainCarousals />
 
-      {/* Suggested For You Section */}
-      <SuggestedForYou />
+            {/* Image grid */}
+            <ImageGrid />
 
-      {/* Another Banner Component */}
-      <SpecialAdBanner />
+            {/* Shop by category section */}
+            <ShopByCategory />
 
-      {/* Explore Where you Left Section */}
-      <Explore />
+            {/* Suggested For You Section */}
+            <SuggestedForYou />
 
-      {/* Get instant discounts on Premium Products */}
-      {/* I NEED TO CREATE IT LATER- HAVE SOME QUESTIONS REGARDING VIEW ALL BUTTON */}
+            {/* Another Banner Component */}
+            <SpecialAdBanner />
 
-      </View>
+            {/* Explore Where you Left Section */}
+            <Explore />
 
+            {/* Get instant discounts on Premium Products */}
+            {/* I NEED TO CREATE IT LATER- HAVE SOME QUESTIONS REGARDING VIEW ALL BUTTON */}
 
-      {/* Shop By Brand Section */}
-      <ShopByBrand />
-
-      <View className='mx-4'>
-
-        {/* Top Home Decor Section */}
-        <TopHomeDecor />
-
-      </View>
-      {/* Image Banner Card */}
-      <ImageBannerCard />
-        
-      
-     
-      
-   </View>
+          </View>
 
 
-    </ScrollView>
-    
+          {/* Shop By Brand Section */}
+          <ShopByBrand />
 
-   </SafeAreaView>
+          <View className='mx-4'>
+
+            {/* Top Home Decor Section */}
+            <TopHomeDecor />
+
+          </View>
+          {/* Image Banner Card */}
+          <ImageBannerCard />
+
+        </View>
+
+      </ScrollView>
+
+    </SafeAreaView>
   );
 }
