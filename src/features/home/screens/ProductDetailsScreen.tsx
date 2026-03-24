@@ -1,19 +1,23 @@
 import { View, Text, Image, TouchableOpacity, ScrollView, TextInput } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { fonts } from "../../../theme/typography";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import {colors} from "../../../theme/colors";
+import  { HorizontalScrollListForSuggestedForYouItems } from "../components/SuggestedForYou";
 
 const ProductDetailsScreen = () => {
     return (
         <ScrollView className="flex-1 bg-white">
+
+            {/* StatusBar */}
+            <StatusBar style="dark"/>
             
             {/* Header Section */}
             <HeaderSection />
+            
 
             {/* Image Section */}
-            <View>
-                <Image className="w-full h-[350px]" resizeMode="cover" source={{ uri: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' }} /> 
-            </View>
+            <ImageSection /> 
 
             {/* Color selection section */}
              <ColorScheme />
@@ -40,28 +44,27 @@ const ProductDetailsScreen = () => {
            <RatingsAndReview />
 
            {/* Photos By Customer */}
-           <View className="p-4 border-b border-gray-100">
-            <Text className="text-lg font-bold" style={{ fontFamily: fonts.rubikBold }}>
-                Photos by Customer
-            </Text>
+            <PhotosByCustomer />
 
-            <View className="flex-row mt-3 space-x-3 gap-2">
-                {[1, 2, 3].map((i) => (
-                    <TouchableOpacity key={i} className="border-2 border-green-600 rounded-lg p-0.5">
-                        <Image 
-                            className="w-16 h-16 rounded-md" 
-                            source={{ uri: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' }} 
-                        />
-                    </TouchableOpacity>
-                ))}
-            </View>
-           </View>
+            {/* View Similar Section */}
+            <ViewSimilar />
+
+            {/* Buttons */}
+            <BuyAddButtons />
         </ScrollView>
     )
 }
 
 export default ProductDetailsScreen;
 
+
+const ImageSection = () => {
+    return (
+        <View>
+            <Image className="w-full h-[350px]" resizeMode="cover" source={{ uri: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' }} /> 
+        </View>
+    )
+}
 
 
 
@@ -309,3 +312,135 @@ const RatingsAndReview = () => {
 }
 
 
+const PhotosByCustomer = () => {
+
+    const data = [
+        { id: 1, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 2, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 3, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 4, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 5, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 6, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 7, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 8, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 9, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+        { id: 10, image: 'https://assets0.mirraw.com/images/9806973/120-Green-1_zoom.jpg?1640781681' },
+    ]
+
+    return (
+         <View className="p-4 border-b border-gray-100">
+            <Text className="text-lg font-bold" style={{ fontFamily: fonts.rubikBold }}>
+                Photos by Customer
+            </Text>
+
+            <View className="flex-row mt-3 space-x-3 gap-2">
+                {data.slice(0, 4).map((item) => (
+                    <TouchableOpacity key={item.id} className="rounded-lg p-0.5">
+                        <Image 
+                            className="w-16 h-16 rounded-md" 
+                            source={{ uri: item.image }} 
+                        />
+                    </TouchableOpacity>
+                ))}
+
+                <TouchableOpacity className="flex rounded-md p-0.5 bg-gray-300 items-center justify-center w-16 h-16">
+                        <Text className="text-sm" >+23 </Text>
+                        <Text className="text-sm">more</Text>
+                    </TouchableOpacity>
+            </View>
+            
+            {/* Review Section */}
+            <View className="mt-8 gap-y-4">
+                <Review />
+                <Review />
+                <Review />
+
+                <TouchableOpacity className="flex-row items-center justify-center">
+                    <Text className="text-md font-bold text-primary" style={{ fontFamily: fonts.rubikBold }}>
+                        See All Reviews
+                    </Text>
+                </TouchableOpacity>
+
+
+            </View>
+           </View>
+    )
+}
+
+const Review = () => {
+    return (
+        <View className="flex-row items-flex-start">
+                    <Image 
+                        source={{ uri: 'https://randomuser.me/api/portraits/women/44.jpg' }} 
+                        className="w-10 h-10 rounded-full"
+                    />
+                    <View className="ml-3 flex-1">
+                        <View className="flex-row items-center">
+                            <Text className="text-gray-600 text-sm" style={{ fontFamily: fonts.rubik }}>
+                                Shweta Tiwari , Delhi
+                            </Text>
+                            <View className="ml-1 bg-[#1E1E1E] rounded-full p-0.5">
+                                <AntDesign name="check" size={8} color="white" />
+                            </View>
+                        </View>
+                        
+                        <View className="flex-row mt-1">
+                            <View className="bg-discountOnBrands-green flex-row items-center px-2 py-0.5 rounded gap-1">
+                                <Text className="text-white text-xs" style={{ fontFamily: fonts.rubikBold }}>4</Text>
+                                <AntDesign name="star" size={10} color="white" />
+                            </View>
+                        </View>
+
+                        <Text className="text-md font-bold mt-2 text-black" style={{ fontFamily: fonts.rubikBold }}>
+                            Teriffic purchase
+                        </Text>
+                        
+                        <Text className="text-gray-500 text-sm mt-1 leading-5" style={{ fontFamily: fonts.rubik }}>
+                            This dress is so beautiful , the fabric is good . fitting is nice and it looks so good on me ,
+                        </Text>
+                        
+                        <Text className="text-gray-400 text-[10px] mt-4" style={{ fontFamily: fonts.rubik }}>
+                            Posted 1yr ago
+                        </Text>
+                    </View>
+                </View>
+    )
+}
+
+
+
+const BuyAddButtons = () => {
+    return (
+        <View className="flex-row items-center px-4 py-6 bg-white border-t border-gray-100">
+            <TouchableOpacity 
+                className="flex-1 flex-row items-center justify-center border-2 border-primary rounded-xl h-14 mr-3"
+            >
+                <MaterialCommunityIcons name="cart-arrow-down" size={24} color={colors.primary} />
+                <Text className="text-primary text-xl ml-2" style={{ fontFamily: fonts.rubikBold }}>
+                    Buy Now
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+                className="flex-1 flex-row items-center justify-center bg-primary rounded-xl h-14"
+            >
+                <MaterialCommunityIcons name="cart-outline" size={24} color="white" />
+                <Text className="text-white text-xl ml-2" style={{ fontFamily: fonts.rubikBold }}>
+                    Add To cart
+                </Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+
+
+
+const ViewSimilar = () => {
+    return (
+        <View className="px-4 py-2 mt-2">
+            <Text className="text-lg font-bold" style={{ fontFamily: fonts.rubikBold }}>View Similar</Text>
+            <HorizontalScrollListForSuggestedForYouItems />
+        </View>
+    )
+}
+ 
