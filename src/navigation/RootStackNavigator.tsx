@@ -6,9 +6,10 @@ import { fontFamily } from "../theme/typography";
 import SortModal from "../features/home/components/Modals/SortModal";
 import FilterModal from "../features/home/components/Modals/FilterModal";
 import ProductDetailsScreen from "../features/home/screens/ProductDetailsScreen";
+import AddressModal from "../features/home/components/AddressModal";
 
 export const RootStack = createNativeStackNavigator({
-  initialRouteName: 'ProductDetails',
+  initialRouteName: 'MainTabs',
   screenOptions: {
      headerStyle: {
           backgroundColor: 'white',
@@ -56,6 +57,14 @@ export const RootStack = createNativeStackNavigator({
       screen: ProductDetailsScreen,
       options: {
         headerTitle: "Product Details",
+      }
+    },
+    AddressModal: {
+      screen: AddressModal,
+      options: {
+        presentation: 'transparentModal',
+        headerShown: false,
+        animation: 'slide_from_bottom',
       }
     }
   },

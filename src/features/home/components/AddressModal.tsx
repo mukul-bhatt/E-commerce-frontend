@@ -1,44 +1,40 @@
-import { View, Text, TouchableOpacity, ScrollView, TextInput, Modal, Pressable, KeyboardAvoidingView, Platform } from "react-native";
-
-
+import { View, Text, TouchableOpacity, ScrollView, TextInput, Platform, KeyboardAvoidingView, Pressable } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-
-const AddressModal = ({ visible, setVisible }: { visible: boolean, setVisible: (visible: boolean) => void }) => {
-
-
+const AddressModal = () => {
+  const navigation = useNavigation();
   const [selected, setSelected] = useState(0);
+  const insets = useSafeAreaInsets();
 
   return (
-    <Modal
-      visible={visible}
-      animationType='slide'
-      transparent={true}
-      onRequestClose={() => setVisible(false)}
-    >
-      <Pressable
-        className='flex-1 justify-end bg-black/50'
-        onPress={() => setVisible(false)}
+    <Pressable className='flex-1 bg-black/50' onPress={() => navigation.goBack()}>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        className="flex-1 justify-end"
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+        <Pressable 
+          onPress={(e) => e.stopPropagation()}
+          className='bg-white px-6 pt-6 rounded-t-3xl' 
+          style={{ 
+            paddingBottom: Platform.OS === 'ios' ? Math.max(insets.bottom, 24) : 24, // Fixes iOS bottom gap while keeping Android safe
+            maxHeight: '90%'
+          }}
         >
-          <Pressable
-            className='bg-white rounded-t-3xl p-6'
-            onPress={(e) => e.stopPropagation()} // Prevents the backdrop click from triggering inside the content area
-          >
-            {/* Header */}
-            <View className='flex-row justify-between items-center mb-4'>
-              <Text className='text-xl font-bold'>Change delivery Location</Text>
-              <TouchableOpacity onPress={() => setVisible(false)}>
-                <MaterialCommunityIcons name="close" size={24} color="black" hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} />
-              </TouchableOpacity>
-            </View>
+          {/* Header */}
+          <View className='flex-row justify-between items-center mb-4 mt-2'>
+            <Text className='text-xl font-bold'>Change delivery Location</Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <MaterialCommunityIcons name="close" size={24} color="black" hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} />
+            </TouchableOpacity>
+          </View>
 
-            {/* Line Separator */}
-            <View className='h-[1px] bg-gray-200 w-full mb-6' />
+          {/* Line Separator */}
+          <View className='h-[1px] bg-gray-200 w-full mb-6' />
 
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
             {/* Previously saved Locations block */}
             <ScrollView
               horizontal
@@ -67,25 +63,22 @@ const AddressModal = ({ visible, setVisible }: { visible: boolean, setVisible: (
                   placeholderTextColor="gray"
                   keyboardType="numeric"
                 />
-                <TouchableOpacity className="bg-[#673AB7] px-6 py-2 rounded-lg m-1">
+                <TouchableOpacity className="bg-primary px-6 py-2 rounded-lg m-1">
                   <Text className="text-white font-bold">Submit</Text>
                 </TouchableOpacity>
               </View>
             </View>
-          </Pressable>
-        </KeyboardAvoidingView>
-      </Pressable>
-
-    </Modal>
+          </ScrollView>
+        </Pressable>
+      </KeyboardAvoidingView>
+    </Pressable>
   )
 }
 
 export default AddressModal
 
-
 const AddressCard = ({ selected }: { selected: boolean }) => {
   return (
-
     <View className={`${selected ? 'bg-[#E8E1F5] border-[#673AB7]' : 'bg-white border-gray-200'} border p-4 rounded-xl w-72 mr-4`}>
       <Text className='text-lg font-bold mb-1'>Ishika Singh</Text>
       <Text className='text-sm text-gray-600 mb-2 leading-5' numberOfLines={3}>
@@ -95,10 +88,4 @@ const AddressCard = ({ selected }: { selected: boolean }) => {
     </View>
   )
 }
-
-
-
-// Features List Pending:
-// 3. Keyboard avoiding view for pincode entering
-// 4. On tap of any card, it should get selected and the previous selected card should get deselected
 
