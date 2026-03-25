@@ -6,5 +6,5 @@ export function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Navigation />
     </GestureHandlerRootView>
-  );
+  );   
 }

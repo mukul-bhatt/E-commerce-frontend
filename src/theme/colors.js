@@ -28,7 +28,8 @@ const colors = {
 
   discountOnBrands: {
     green: "#219601",
-  }
+  },
+  error: "#EF4444",
 };
 
 module.exports = { colors };
