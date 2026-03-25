@@ -7,9 +7,11 @@ import SortModal from "../features/home/components/Modals/SortModal";
 import FilterModal from "../features/home/components/Modals/FilterModal";
 import ProductDetailsScreen from "../features/home/screens/ProductDetailsScreen";
 import AddressModal from "../features/home/components/AddressModal";
+import RegisterScreen from "../features/auth/screens/RegisterScreen";
+import LoginScreen from "../features/auth/screens/LoginScreen";
 
 export const RootStack = createNativeStackNavigator({
-  initialRouteName: 'MainTabs',
+  initialRouteName: 'RegisterScreen',
   screenOptions: {
      headerStyle: {
           backgroundColor: 'white',
@@ -65,6 +67,18 @@ export const RootStack = createNativeStackNavigator({
         presentation: 'transparentModal',
         headerShown: false,
         animation: 'slide_from_bottom',
+      }
+    },
+    RegisterScreen: {
+      screen: RegisterScreen,
+      options: {
+        headerTitle: "Register",
+      }
+    },
+    LoginScreen: {
+      screen: LoginScreen,
+      options: {
+        headerTitle: "Login",
       }
     }
   },
