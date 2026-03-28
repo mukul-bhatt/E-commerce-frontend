@@ -9,6 +9,8 @@ interface CategoryCardProps {
   image: any;
 }
 
+
+
 const CategoryCard = ({ title, discount, image }: CategoryCardProps) => (
   <TouchableOpacity className="flex-1 h-[150px] rounded-lg overflow-hidden">
     <ImageBackground
@@ -71,3 +73,4 @@ const ImageGrid = () => {
 };
 
 export default ImageGrid;
+

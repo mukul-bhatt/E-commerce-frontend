@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const { colors } = require('./src/theme/colors');
 const { spacing } = require('./src/theme/spacing');
+const { fontFamily } = require('./src/theme/typography');
 
 module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
@@ -10,6 +11,7 @@ module.exports = {
     extend: {
       colors,
       spacing,
+      fontFamily,
     },
   },
   plugins: [],

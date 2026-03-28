@@ -1,6 +1,7 @@
 const colors = {
   primary: "#6A4C93",
   defaultGray: "#D9D9D9",
+  cardStroke: "#E8E8E8",
 
   textInput: {
     placeHolder: "#888"
@@ -28,6 +29,9 @@ const colors = {
 
   discountOnBrands: {
     green: "#219601",
+  },
+  ratings: {
+    star: "#219601"
   },
   error: "#EF4444",
 };

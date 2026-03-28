@@ -11,6 +11,7 @@ import RegisterScreen from "../features/auth/screens/RegisterScreen";
 import LoginScreen from "../features/auth/screens/LoginScreen";
 
 export const RootStack = createNativeStackNavigator({
+  // initialRouteName: 'MainTabs',
   initialRouteName: 'RegisterScreen',
   screenOptions: {
      headerStyle: {

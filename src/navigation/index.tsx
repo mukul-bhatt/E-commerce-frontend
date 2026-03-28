@@ -3,9 +3,12 @@ import {
   StaticParamList,
 } from '@react-navigation/native';
 import { RootStack } from './RootStackNavigator';
+import AuthStack from './AuthNavigation';
+import { tokenStorage } from '../services/storage/tokenStorage';
 
+const authToken = tokenStorage.getAccessToken();
 
-export const Navigation = createStaticNavigation(RootStack);
+export const Navigation = createStaticNavigation(authToken !== null ? RootStack : AuthStack);
 
 type RootStackParamList = StaticParamList<typeof RootStack>;
 
