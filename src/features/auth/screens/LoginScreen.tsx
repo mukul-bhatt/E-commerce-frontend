@@ -2,6 +2,8 @@ import { View, Text, TextInput, Pressable, ScrollView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { loginUser } from "../services/authService"
+import { LoginRequest } from "../models/loginModel"
 
 // Validation schema
 const LoginSchema = Yup.object().shape({
@@ -19,6 +21,12 @@ export default function LoginScreen() {
   const handleLogin = (values: any) => {
     console.log('Login values:', values);
     // Add login logic here
+        try{
+          loginUser(values);
+        }
+        catch(error){
+          console.log(error)
+        }
   };
 
   return (
