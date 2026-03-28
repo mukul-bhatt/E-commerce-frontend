@@ -1,9 +1,11 @@
-import { View, Text, TextInput, Pressable, ScrollView } from "react-native"
+import { View, Text, TextInput, Pressable, ScrollView, Alert, ActivityIndicator } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { useNavigation } from "@react-navigation/native"
 import { fontFamily } from "../../../theme/typography"
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { registerUser } from "../services/authService"
+import { RegisterRequest } from "../models/registerApiResponse"
 
 // Validation schema
 const RegisterSchema = Yup.object().shape({
@@ -20,9 +22,28 @@ const RegisterSchema = Yup.object().shape({
 export default function RegisterScreen() {
   const navigation = useNavigation();
 
-  const handleRegister = (values: any) => {
+  const handleRegister = async (values: any, { setSubmitting }: any) => {
     console.log('Register values:', values);
-    // Add registration logic here
+    try {
+      const payloadForRegister: RegisterRequest = {
+        first_name: values.firstName,
+        last_name: values.lastName,
+        email: values.email,
+        phone: values.phoneNumber,
+        password: values.password,
+        device_type: "Android",
+        device_name: "Samsung Galaxy S23",
+        device_id: "device-uuid-001",
+      }
+      const response = await registerUser(payloadForRegister)
+      Alert.alert("Success", "Account created successfully!")
+      navigation.navigate('LoginScreen' as never)
+    } catch (error: any) {
+      console.log('Registration error:', error.message);
+      Alert.alert("Registration Failed", error.message || "Something went wrong")
+    } finally {
+      setSubmitting(false)
+    }
   };
 
   return (
@@ -170,11 +191,20 @@ export default function RegisterScreen() {
           {/* register button */}
           <Pressable
             onPress={() => handleSubmit()}
-            className="py-4 rounded-2xl items-center bg-primary"
+            disabled={values.firstName === '' || values.lastName === '' || values.email === '' || values.phoneNumber === '' || values.password === '' || values.confirmPassword === '' || (values as any).isSubmitting}
+            className={`py-4 rounded-2xl items-center ${
+              (values.firstName === '' || values.lastName === '' || values.email === '' || values.phoneNumber === '' || values.password === '' || values.confirmPassword === '')
+                ? 'bg-gray-300'
+                : 'bg-primary'
+            }`}
           >
-            <Text className="text-white font-semibold text-base">
-              Create Account
-            </Text>
+            {(values as any).isSubmitting ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              <Text className="text-white font-semibold text-base">
+                Create Account
+              </Text>
+            )}
           </Pressable>
 
           {/* login link */}
