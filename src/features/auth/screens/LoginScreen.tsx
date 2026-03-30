@@ -2,6 +2,9 @@ import { View, Text, TextInput, Pressable, ScrollView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { loginUser } from "../services/authService"
+import { LoginRequest } from "../models/loginModel"
+import { fontFamily } from "../../../theme/typography"
 
 // Validation schema
 const LoginSchema = Yup.object().shape({
@@ -19,6 +22,12 @@ export default function LoginScreen() {
   const handleLogin = (values: any) => {
     console.log('Login values:', values);
     // Add login logic here
+        try{
+          loginUser(values);
+        }
+        catch(error){
+          console.log(error)
+        }
   };
 
   return (
@@ -29,11 +38,11 @@ export default function LoginScreen() {
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
         <ScrollView
-          className="flex-1 bg-white"
+          className="flex-1 bg-white pt-10"
           contentContainerStyle={{ padding: 20 }}
         >
           {/* heading */}
-          <Text className="text-2xl font-semibold mb-2">
+          <Text className="text-3xl mb-2" style={{fontFamily: fontFamily.rubikBold}}>
             Welcome Back
           </Text>
 
@@ -109,7 +118,7 @@ export default function LoginScreen() {
             <Text className="text-gray-500">
               Don't have an account?
             </Text>
-            <Pressable onPress={() => (navigation as any).navigate('RegisterScreen')}>
+            <Pressable onPress={() => (navigation as any).navigate('Register')}>
               <Text className="ml-1 font-semibold">
                 Create account
               </Text>

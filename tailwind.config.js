@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors,
-      spacing,
+      spacing
     },
   },
   plugins: [],

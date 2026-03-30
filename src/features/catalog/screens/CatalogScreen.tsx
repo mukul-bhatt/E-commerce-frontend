@@ -1,27 +1,37 @@
-import { Text } from '@react-navigation/elements';
-import { View } from 'react-native';
-import { featuredCategories } from '../../../shared/constants/storefront';
-import { Screen } from '../../../shared/ui/Screen';
+import React, { useState } from 'react';
+import { View, Text, StatusBar, Platform } from 'react-native';
+import { CATALOG_DATA, Category } from '../constants/mockData';
+import { CategorySidebar } from '../components/CategorySidebar';
+import { SubCategoryContent } from '../components/SubCategoryContent';
 
 export function CatalogScreen() {
-  return (
-    <Screen scroll contentClassName="gap-4">
-      <View>
-        <Text className="text-3xl font-bold text-white">Catalog</Text>
-        <Text className="mt-2 text-sm text-slate-400">
-          Keep product lists, filters, search, and product cards under this feature.
-        </Text>
-      </View>
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>(CATALOG_DATA[8].id); // Default to Furniture as per image
 
-      {featuredCategories.map((category) => (
-        <View
-          key={category.name}
-          className="rounded-2xl border border-slate-800 bg-slate-900 px-5 py-4"
-        >
-          <Text className="text-lg font-semibold text-white">{category.name}</Text>
-          <Text className="mt-1 text-sm text-slate-400">{category.itemCount}</Text>
-        </View>
-      ))}
-    </Screen>
+  const selectedCategory = CATALOG_DATA.find((cat) => cat.id === selectedCategoryId) || CATALOG_DATA[0];
+
+  const handleSelectCategory = (id: string) => {
+    setSelectedCategoryId(id);
+  };
+
+  return (
+    <View className="flex-1 bg-white">
+      <StatusBar barStyle="dark-content" />
+
+      {/* Main Content Area */}
+      <View className="flex-1 flex-row pt-4">
+        {/* Left Sidebar */}
+        <CategorySidebar
+          categories={CATALOG_DATA}
+          selectedCategoryId={selectedCategoryId}
+          onSelectCategory={handleSelectCategory}
+        />
+
+        {/* Right Content */}
+        <SubCategoryContent
+          category={selectedCategory}
+          onItemPress={(item) => console.log('Item Pressed:', item.name)}
+        />
+      </View>
+    </View>
   );
 }

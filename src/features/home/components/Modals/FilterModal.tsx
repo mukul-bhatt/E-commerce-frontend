@@ -14,14 +14,41 @@ const brandOptions = [
   'Apsara', 'Shein', 'Only'
 ];
 
+const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
+
+const colourOptions = [
+  { name: 'Red', color: '#EF4444' },
+  { name: 'Pink', color: '#EC4899' },
+  { name: 'Green', color: '#10B981' },
+  { name: 'Yellow', color: '#FACC15' },
+  { name: 'Orange', color: '#F97316' },
+  { name: 'Olive', color: '#059669' },
+  { name: 'Blue', color: '#3B82F6' },
+  { name: 'Black', color: '#000000' },
+  { name: 'White', color: '#FFFFFF' },
+  { name: 'Peach', color: '#FDE6D2' },
+];
+
 const FilterModal = () => {
   const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState('Brand');
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedColours, setSelectedColours] = useState<string[]>([]);
 
   const toggleBrand = (brand: string) => {
     setSelectedBrands((prev) =>
       prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+    );
+  };
+
+  const handleSizeSelect = (size: string) => {
+    setSelectedSize((prev) => (prev === size ? null : size));
+  };
+
+  const toggleColour = (colour: string) => {
+    setSelectedColours((prev) =>
+      prev.includes(colour) ? prev.filter((c) => c !== colour) : [...prev, colour]
     );
   };
 
@@ -72,6 +99,8 @@ const FilterModal = () => {
 
             {selectedCategory === "Brand" && <Brand selectedBrands={selectedBrands} toggleBrand={toggleBrand} />}
             {selectedCategory === "Price" && <PriceRangeSlider />}
+            {selectedCategory === "Size" && <Size selectedSize={selectedSize} onSelect={handleSizeSelect} />}
+            {selectedCategory === "Colour" && <Colour selectedColours={selectedColours} toggleColour={toggleColour} />}
             {/* {selectedCategory === "Gender" && <Gender />}
             {selectedCategory === "Trending" && <Trending />} */}
            
@@ -151,5 +180,67 @@ const Brand = ({selectedBrands, toggleBrand}: {selectedBrands: string[], toggleB
                 </TouchableOpacity>
               ))}
             </View>
+    )
+}
+const Size = ({selectedSize, onSelect}: {selectedSize: string | null, onSelect: (size: string) => void}) => {
+    return (
+         <View className="flex-row flex-wrap gap-2 justify-center">
+              {sizeOptions.map((size, index) => (
+                <TouchableOpacity
+                  key={index}
+                  className={`w-[30%] py-2 border rounded-lg bg-white items-center ${
+                    selectedSize === size
+                      ? 'border-primary bg-primary/10'
+                      : 'border-gray-200'
+                  }`}
+                  onPress={() => onSelect(size)}
+                >
+                  <Text
+                    style={{
+                      fontFamily: selectedSize === size
+                        ? fonts.rubikBold
+                        : fonts.rubik,
+                      color: selectedSize === size
+                        ? colors.primary
+                        : 'black',
+                    }}
+                    className="text-xs"
+                    numberOfLines={1}
+                  >
+                    {size}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+    )
+}
+
+const Colour = ({selectedColours, toggleColour}: {selectedColours: string[], toggleColour: (colour: string) => void}) => {
+    return (
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View className="gap-4">
+                {colourOptions.map((option, index) => (
+                    <TouchableOpacity
+                        key={index}
+                        onPress={() => toggleColour(option.name)}
+                        className="flex-row items-center gap-3"
+                    >
+                        <View 
+                            className={`w-6 h-6 rounded ${option.name === 'White' ? 'border border-gray-200' : ''}`}
+                            style={{ backgroundColor: option.color }}
+                        />
+                        <Text 
+                            style={{ 
+                                fontFamily: selectedColours.includes(option.name) ? fonts.rubikBold : fonts.rubik,
+                                color: selectedColours.includes(option.name) ? colors.primary : 'black'
+                            }} 
+                            className="text-base"
+                        >
+                            {option.name}
+                        </Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </ScrollView>
     )
 }

@@ -55,8 +55,14 @@ const AddressModal = () => {
             <Text className="text-gray-400 mb-6">Or--</Text>
 
             <View className="mb-4">
-              <Text className="text-lg font-bold mb-3">Enter Pincode</Text>
+              <View className="flex-row justify-between items-center mb-3">
+                <Text className="text-lg font-bold">Enter Pincode</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('AddAddress' as never)}>
+                  <Text className="text-primary font-bold">Add New Address</Text>
+                </TouchableOpacity>
+              </View>
               <View className="flex-row items-center border border-gray-300 rounded-xl p-1">
+
                 <TextInput
                   placeholder="Enter Pincode"
                   className="flex-1 px-4 py-2 text-black"

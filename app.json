@@ -35,7 +35,7 @@
       [
         "expo-font",
         {
-           "fonts": [
+          "fonts": [
             "./assets/fonts/CormorantGaramond_500Medium.ttf",
             "./assets/fonts/Girassol_400Regular.ttf",
             "./assets/fonts/Gidugu_400Regular.ttf",
@@ -43,9 +43,10 @@
             "./assets/fonts/Rubik_400Regular.ttf",
             "./assets/fonts/Rubik_500Medium.ttf",
             "./assets/fonts/Rubik_700Bold.ttf"
-            ]
+          ]
         }
-      ]
+      ],
+      "expo-secure-store"
     ]
   }
 }
