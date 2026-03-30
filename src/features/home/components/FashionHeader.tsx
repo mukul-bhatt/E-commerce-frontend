@@ -1,5 +1,6 @@
-import { Image, Text, View } from "react-native"
+import { Image, Pressable, Text, View } from "react-native"
 import { fonts } from "../../../theme/typography"
+import { useNavigation } from "@react-navigation/native"
 
 
 const data = [
@@ -21,13 +22,16 @@ const data = [
 ]
 
 const FashionHeader = () => {
+    const navigation = useNavigation()
     return (
         <View className="flex-row gap-4">
             {data.map((item) => (
-                <View key={item.id}>
-                    <Image className="h-20 w-20 rounded-xl" source={item.imgSource} />
-                    <Text className="text-center text-sm">{item.tagName}</Text>
-                </View>
+                <Pressable key={item.id} onPress={() => {navigation.navigate("WomensFashion") }}>
+                    <View>
+                        <Image className="h-20 w-20 rounded-xl" source={item.imgSource} />
+                        <Text className="text-center text-sm">{item.tagName}</Text>
+                    </View>
+                </Pressable>
             ))}
         </View>
     )
