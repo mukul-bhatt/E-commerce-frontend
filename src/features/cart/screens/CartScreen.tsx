@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { ScrollView, Text, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+
 import { StatusBar } from 'expo-status-bar';
 
 import CheckoutStepper from '../components/CheckoutStepper';
@@ -8,8 +11,9 @@ import OffersCarousel from '../components/OffersCarousel';
 import CartItemCard, { CartItem } from '../components/CartItemCard';
 import PriceDetails from '../components/PriceDetails';
 import EmptyCart from '../components/EmptyCart';
+import RemoveItemModal from '../components/RemoveItemModal';
 
-const cartItems: CartItem[] = [
+const INITIAL_CART_ITEMS: CartItem[] = [
   {
     id: '1',
     name: 'Blue Summer Dress floral',
@@ -38,12 +42,55 @@ const cartItems: CartItem[] = [
 ];
 
 export function CartScreen() {
+  const [cartItems, setCartItems] = useState<CartItem[]>(INITIAL_CART_ITEMS);
+  const [isRemoveModalVisible, setIsRemoveModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<CartItem | null>(null);
+
   const itemCount = cartItems.length;
 
   if (itemCount === 0) {
     // Cart is empty 
     return <EmptyCart />
   }
+
+  const handleRemovePress = (id: string) => {
+    const item = cartItems.find(i => i.id === id);
+    if (item) {
+      setSelectedItem(item);
+      setIsRemoveModalVisible(true);
+    }
+  };
+
+  const confirmRemove = (id: string) => {
+    setCartItems(prev => prev.filter(item => item.id !== id));
+    setIsRemoveModalVisible(false);
+    setSelectedItem(null);
+  };
+
+  const handleQuantityChange = (id: string, qty: number) => {
+    setCartItems(prev => prev.map(item => item.id === id ? { ...item, quantity: qty } : item));
+  };
+
+  const calculateBreakdown = () => {
+    const totalMRP = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    // Rough calculation for demo purposes
+    const discount = Math.round(totalMRP * 0.15); 
+    const couponDiscount = 20;
+    const platformFees = 10;
+    const deliveryCharge = 0;
+    const totalAmount = totalMRP - discount - couponDiscount + platformFees + deliveryCharge;
+
+    return {
+      itemCount: cartItems.length,
+      totalMRP,
+      discount,
+      couponDiscount,
+      platformFees,
+      deliveryCharge,
+      freeDelivery: true,
+      totalAmount,
+    };
+  };
 
   return (
     <View className="bg-white flex-1">
@@ -60,10 +107,14 @@ export function CartScreen() {
         <OffersCarousel />
 
         {/* Cart items */}
-        <CartItems />
+        <CartItemsComponent 
+          items={cartItems} 
+          onDelete={handleRemovePress}
+          onQuantityChange={handleQuantityChange}
+        />
 
         {/* Price details */}
-        <PriceDetails />
+        <PriceDetails breakdown={calculateBreakdown()} />
 
       </ScrollView>
 
@@ -72,13 +123,33 @@ export function CartScreen() {
       <BottomBar itemCount={itemCount} />
 
       <PlaceOrderButton />
+
+      {/* Removal Confirmation Modal */}
+      <RemoveItemModal
+        isVisible={isRemoveModalVisible}
+        item={selectedItem}
+        onClose={() => setIsRemoveModalVisible(false)}
+        onRemove={confirmRemove}
+        onMoveToWishlist={(id) => {
+          // For now, moving to wishlist also removes from cart
+          confirmRemove(id);
+        }}
+      />
     </View>
   );
 }
 
 
 
-const CartItems = () => {
+const CartItemsComponent = ({ 
+  items, 
+  onDelete,
+  onQuantityChange 
+}: { 
+  items: CartItem[], 
+  onDelete: (id: string) => void,
+  onQuantityChange: (id: string, qty: number) => void
+}) => {
   return (
 
     <View>
@@ -90,10 +161,14 @@ const CartItems = () => {
 
       {/* Cart items */}
       <View>
-        {cartItems.map((item, index) => (
+        {items.map((item, index) => (
           <View key={item.id}>
-            <CartItemCard item={item} />
-            {index < cartItems.length - 1 && (
+            <CartItemCard 
+              item={item} 
+              onDelete={onDelete}
+              onQuantityChange={onQuantityChange}
+            />
+            {index < items.length - 1 && (
               <View className="h-[1px] bg-cardStroke mx-4" />
             )}
           </View>
@@ -117,14 +192,22 @@ const BottomBar = ({ itemCount }: { itemCount: number }) => {
 
 
 const PlaceOrderButton = () => {
+  const navigation = useNavigation<any>();
   return (
-    <View className="px-4 py-3 bg-white">
-      <Pressable className="bg-primary rounded-xl py-4 items-center">
-        <Text className="text-white font-bold text-sm tracking-widest">
-          PLACE ORDER
-        </Text>
-      </Pressable>
-    </View>
+    <SafeAreaView edges={['bottom']} className="bg-white">
+      <View className="px-4 py-3">
+        <Pressable 
+          className="bg-primary rounded-xl py-4 items-center"
+          onPress={() => navigation.navigate('Address')}
+        >
+          <Text className="text-white font-bold text-sm tracking-widest">
+            PLACE ORDER
+          </Text>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 }
+
+
 
