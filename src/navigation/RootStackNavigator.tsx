@@ -7,12 +7,23 @@ import SortModal from "../features/home/components/Modals/SortModal";
 import FilterModal from "../features/home/components/Modals/FilterModal";
 import ProductDetailsScreen from "../features/home/screens/ProductDetailsScreen";
 import AddressModal from "../features/home/components/AddressModal";
-import RegisterScreen from "../features/auth/screens/RegisterScreen";
-import LoginScreen from "../features/auth/screens/LoginScreen";
+import ReviewProduct from "../features/home/components/ProductDetails/Review";
+import OrderDetailsScreen from "../features/Orders/screens/OrderDetailsScreen";
+import ReturnExchangeScreen from "../features/Orders/screens/ReturnExchangeScreen";
+import { AddressScreen } from "../features/checkout/screens/AddressScreen";
+import { PaymentScreen } from "../features/checkout/screens/PaymentScreen";
+import { OrderSuccessScreen } from "../features/checkout/screens/OrderSuccessScreen";
+import { AddAddressScreen } from "../features/checkout/screens/AddAddressScreen";
+import { EditProfileScreen } from "../features/Accounts/screens/EditProfileScreen";
+import WishlistScreen from "../features/Accounts/screens/WishlistScreen";
+
+
+
+
 
 export const RootStack = createNativeStackNavigator({
-  // initialRouteName: 'MainTabs',
-  initialRouteName: 'RegisterScreen',
+  initialRouteName: 'MainTabs',
+  // initialRouteName: 'LoginMethod',
   screenOptions: {
      headerStyle: {
           backgroundColor: 'white',
@@ -70,17 +81,70 @@ export const RootStack = createNativeStackNavigator({
         animation: 'slide_from_bottom',
       }
     },
-    RegisterScreen: {
-      screen: RegisterScreen,
+    ReviewProduct: {
+      screen: ReviewProduct,
       options: {
-        headerTitle: "Register",
+        headerTitle: "Review Product",
       }
     },
-    LoginScreen: {
-      screen: LoginScreen,
+    OrderDetails: {
+      screen: OrderDetailsScreen,
       options: {
-        headerTitle: "Login",
+        headerShown: true,
+        headerTitle: "Order Details",
+      }
+    },
+    ReturnExchange: {
+      screen: ReturnExchangeScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Return/Exchange",
+      }
+    },
+    Address: {
+      screen: AddressScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Address",
+      }
+    },
+    Payment: {
+      screen: PaymentScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Payment",
+      }
+    },
+    OrderSuccess: {
+      screen: OrderSuccessScreen,
+      options: {
+        headerShown: false,
+      }
+    },
+    AddAddress: {
+      screen: AddAddressScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Add Address",
+      }
+    },
+    EditProfile: {
+      screen: EditProfileScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Edit Profile",
+      }
+    },
+    Wishlist: {
+      screen: WishlistScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "My Wishlist",
       }
     }
+
+
+
+
   },
 });

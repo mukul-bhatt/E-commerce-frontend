@@ -1,15 +1,17 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { TouchableOpacity } from 'react-native';
 import { HomeScreen } from '../features/home/screens/HomeScreen';
 import FashionScreen from '../features/home/screens/FashionScreen';
 import { CartScreen } from '../features/cart/screens/CartScreen';
-import { ProfileScreen } from '../features/profile/screens/ProfileScreen';
+import MyOrders from '../features/Orders/screens/MyOrders';
 import { AccountScreen } from '../features/Accounts/screens/AccountScreen';
+import { CatalogScreen } from '../features/catalog/screens/CatalogScreen';
 import { FontAwesome5, AntDesign, Feather, Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { fontFamily } from '../theme/typography';
 
 const MainTabs = createBottomTabNavigator({
-  initialRouteName: 'Cart',
+  initialRouteName: 'Account',
   screenOptions: {
     headerShown: false,
     animation: 'fade',
@@ -41,22 +43,37 @@ const MainTabs = createBottomTabNavigator({
       },
     },
     Catalog: {
-      screen: FashionScreen,
+      screen: CatalogScreen,
       options: {
         title: 'Categories',
         tabBarIcon: ({ color }) => (
           <Feather name="grid" size={24} color={color} />
         ),
+        headerShown: true,
       },
     },
     Orders: {
-      screen: ProfileScreen,
+      screen: MyOrders,
       options: {
         title: 'Orders',
         tabBarIcon: ({ color }) => (
           <Feather name="package" size={24} color={color} />
         ),
-
+        headerShown: true,
+        headerTitle: 'ORDERS',
+        headerTitleStyle: {
+          fontFamily: fontFamily.rubikMedium,
+          color: colors.primary,
+          letterSpacing: 2,
+        },
+        headerStyles: {
+          height: 80
+        },
+        headerRight: () => (
+          <TouchableOpacity style={{ marginRight: 20 }}>
+            <Feather name="menu" size={24} color={colors.primary} />
+          </TouchableOpacity>
+        ),
       },
     },
     Cart: {
@@ -79,11 +96,14 @@ const MainTabs = createBottomTabNavigator({
       screen: AccountScreen,
       options: {
         title: 'Account',
+        headerShown: true,
+        headerTitle: 'My Account',
         tabBarIcon: ({ color }) => (
           <FontAwesome5 name="user-circle" size={24} color={color} />
         ),
       },
     },
+
   },
 });
 
