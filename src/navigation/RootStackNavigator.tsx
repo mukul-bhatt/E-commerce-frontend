@@ -17,9 +17,23 @@ import { AddAddressScreen } from "../features/checkout/screens/AddAddressScreen"
 import { EditProfileScreen } from "../features/Accounts/screens/EditProfileScreen";
 import { SavedAddressesScreen } from "../features/checkout/screens/SavedAddressesScreen";
 import { EditAddressScreen } from "../features/checkout/screens/EditAddressScreen";
-
-
+import { RatingsReviewsScreen } from "../features/Accounts/screens/RatingsReviewsScreen";
+import { EditReviewScreen } from "../features/Accounts/screens/EditReviewScreen";
+import { TermsOfUseScreen } from "../features/Accounts/screens/TermsOfUseScreen";
+import { PrivacyPolicyScreen } from "../features/Accounts/screens/PrivacyPolicyScreen";
+import { ContactSupportScreen } from "../features/Accounts/screens/ContactSupportScreen";
+import { CouponsScreen } from "../features/Accounts/screens/CouponsScreen";
+import { SavedPaymentsScreen } from "../features/Accounts/screens/SavedPaymentsScreen";
+import { NotificationSettingsScreen } from "../features/Accounts/screens/NotificationSettingsScreen";
 import WishlistScreen from "../features/Accounts/screens/WishlistScreen";
+
+
+
+
+
+
+
+
 
 
 
@@ -161,7 +175,79 @@ export const RootStack = createNativeStackNavigator({
         headerShown: true,
         headerTitle: "My Wishlist",
       }
+    },
+    RatingsReviews: {
+      screen: RatingsReviewsScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Ratings and reviews",
+      }
+    },
+    EditReview: {
+      screen: EditReviewScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Edit Review",
+      }
+    },
+    TermsOfUse: {
+      screen: TermsOfUseScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Terms of Use",
+      }
+    },
+    PrivacyPolicy: {
+      screen: PrivacyPolicyScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Privacy policy",
+      }
+    },
+    ContactSupport: {
+      screen: ContactSupportScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Contact Support",
+        headerStyle: {
+          backgroundColor: '#5E4E91', // primary color for support header
+        },
+        headerTintColor: 'white',
+        headerTitleStyle: {
+          color: 'white',
+          fontWeight: 'bold',
+        }
+      }
+    },
+    Coupons: {
+      screen: CouponsScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Coupons",
+      }
+    },
+    SavedPayments: {
+      screen: SavedPaymentsScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Saved Payment Methods",
+      }
+    },
+    NotificationSettings: {
+      screen: NotificationSettingsScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Notifications",
+      }
     }
+
+
+
+
+
+
+
+
 
 
 

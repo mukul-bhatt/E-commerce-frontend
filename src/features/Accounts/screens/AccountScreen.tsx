@@ -35,46 +35,60 @@ export function AccountScreen() {
 
 
       <AccountMenuOption 
+        onPress={() => navigation.navigate('SavedPayments')}
         icon={<MaterialCommunityIcons name="credit-card-outline" size={24} color="#4B5563" />}
         title="Saved Payment methods"
         subtitle="Manage your payment methods"
       />
 
+
       <AccountMenuOption 
+        onPress={() => navigation.navigate('RatingsReviews')}
         icon={<Feather name="message-square" size={22} color="#4B5563" />}
         title="Ratings and reviews"
         subtitle="History of all your ratings and reviews"
       />
 
+
       <AccountMenuOption 
+        onPress={() => navigation.navigate('Coupons')}
         icon={<MaterialCommunityIcons name="ticket-percent-outline" size={24} color="#4B5563" />}
         title="Coupons"
         subtitle="Your collected coupons will be shared here"
       />
 
+
       <AccountMenuOption 
+        onPress={() => navigation.navigate('TermsOfUse')}
         icon={<MaterialCommunityIcons name="gavel" size={24} color="#4B5563" />}
         title="Terms of use"
         subtitle="Terms and conditions"
       />
 
+
       <AccountMenuOption 
+        onPress={() => navigation.navigate('PrivacyPolicy')}
         icon={<MaterialCommunityIcons name="file-document-outline" size={24} color="#4B5563" />}
         title="Privacy Policy"
         subtitle="Privacy policy"
       />
 
+
       <AccountMenuOption 
+        onPress={() => navigation.navigate('ContactSupport')}
         icon={<MaterialCommunityIcons name="face-agent" size={24} color="#4B5563" />}
         title="Contact Support"
         subtitle="Contact our support for claims"
       />
 
+
       <AccountMenuOption 
+        onPress={() => navigation.navigate('NotificationSettings')}
         icon={<Ionicons name="notifications-outline" size={24} color="#4B5563" />}
         title="Notification Settings"
         subtitle="Manage your Settings"
       />
+
 
       {/* Logout Button */}
       <Pressable className="mx-4 mt-6 py-4 rounded-xl border border-red-500 bg-white flex-row items-center justify-center">
