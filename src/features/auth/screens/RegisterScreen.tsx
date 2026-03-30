@@ -61,14 +61,14 @@ export default function RegisterScreen() {
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
         <ScrollView
-          className="flex-1 bg-white"
+          className="flex-1 bg-white pt-10"
           contentContainerStyle={{ padding: 20 }}
         >
           {/* Status Bar */}
           <StatusBar style='dark' />
 
           {/* header */}
-          <Text className="text-2xl font-semibold mb-6">
+          <Text className="text-3xl mb-6" style={{fontFamily: fontFamily.rubikBold}}>
             Create Account
           </Text>
 
@@ -212,7 +212,7 @@ export default function RegisterScreen() {
             <Text className="text-gray-500">
               Already have an account?
             </Text>
-            <Pressable onPress={() => (navigation as any).navigate('LoginScreen')}>
+            <Pressable onPress={() => (navigation as any).navigate('Login')}>
               <Text className="ml-1 font-semibold">
                 Login
               </Text>
