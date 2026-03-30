@@ -27,10 +27,12 @@ export function AccountScreen() {
       />
 
       <AccountMenuOption 
+        onPress={() => navigation.navigate('SavedAddresses')}
         icon={<Feather name="map-pin" size={22} color="#4B5563" />}
         title="Saved Addresses"
         subtitle="Check your saved Addresses"
       />
+
 
       <AccountMenuOption 
         icon={<MaterialCommunityIcons name="credit-card-outline" size={24} color="#4B5563" />}

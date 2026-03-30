@@ -15,6 +15,10 @@ import { PaymentScreen } from "../features/checkout/screens/PaymentScreen";
 import { OrderSuccessScreen } from "../features/checkout/screens/OrderSuccessScreen";
 import { AddAddressScreen } from "../features/checkout/screens/AddAddressScreen";
 import { EditProfileScreen } from "../features/Accounts/screens/EditProfileScreen";
+import { SavedAddressesScreen } from "../features/checkout/screens/SavedAddressesScreen";
+import { EditAddressScreen } from "../features/checkout/screens/EditAddressScreen";
+
+
 import WishlistScreen from "../features/Accounts/screens/WishlistScreen";
 
 
@@ -135,6 +139,22 @@ export const RootStack = createNativeStackNavigator({
         headerTitle: "Edit Profile",
       }
     },
+    SavedAddresses: {
+      screen: SavedAddressesScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Saved addresses",
+      }
+    },
+    EditAddress: {
+      screen: EditAddressScreen,
+      options: {
+        headerShown: true,
+        headerTitle: "Edit Address",
+      }
+    }
+
+,
     Wishlist: {
       screen: WishlistScreen,
       options: {
