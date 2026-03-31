@@ -9,6 +9,7 @@ import { CatalogScreen } from '../features/catalog/screens/CatalogScreen';
 import { FontAwesome5, AntDesign, Feather, Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { fontFamily } from '../theme/typography';
+import { Platform } from 'react-native';
 
 const MainTabs = createBottomTabNavigator({
   initialRouteName: 'Account',
@@ -19,7 +20,7 @@ const MainTabs = createBottomTabNavigator({
     tabBarInactiveTintColor: colors.icon.secondary,
     headerStyle: {
       backgroundColor: 'white',
-      height: 70
+      height: Platform.OS === 'ios' ? 100 : 70,
     },
     headerShadowVisible: false,
     headerTitleAlign: 'center',

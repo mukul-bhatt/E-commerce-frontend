@@ -166,9 +166,7 @@ export const RootStack = createNativeStackNavigator({
         headerShown: true,
         headerTitle: "Edit Address",
       }
-    }
-
-,
+    },
     Wishlist: {
       screen: WishlistScreen,
       options: {
