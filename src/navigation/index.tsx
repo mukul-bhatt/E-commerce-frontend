@@ -10,8 +10,8 @@ import { tokenStorage } from '../services/storage/tokenStorage';
 // This is why you always saw the main app! To properly check for tokens at launch, you 
 // should handle this state asynchronously in your App hook.
 // For now, to test the auth flow, we are hardcoding it to null:
-// const authToken = null;
- const authToken = tokenStorage.getAccessToken();
+const authToken = null;
+//  const authToken = tokenStorage.getAccessToken();
 
 export const Navigation = createStaticNavigation(authToken !== null ? RootStack : AuthStack);
 

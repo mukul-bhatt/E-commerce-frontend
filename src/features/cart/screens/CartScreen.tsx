@@ -194,8 +194,8 @@ const BottomBar = ({ itemCount }: { itemCount: number }) => {
 const PlaceOrderButton = () => {
   const navigation = useNavigation<any>();
   return (
-    <SafeAreaView edges={['bottom']} className="bg-white">
-      <View className="px-4 py-3">
+    // <SafeAreaView edges={['bottom']} className="bg-white">
+      <View className="px-4 py-3 bg-white">
         <Pressable 
           className="bg-primary rounded-xl py-4 items-center"
           onPress={() => navigation.navigate('Address')}
@@ -205,7 +205,7 @@ const PlaceOrderButton = () => {
           </Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 }
 
